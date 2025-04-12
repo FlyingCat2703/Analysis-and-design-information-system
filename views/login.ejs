@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login</title>
+      <link rel="stylesheet" href="/styles/login.css">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title">
+            Login Form
+         </div>
+         <form id="loginForm">
+            <div class="field">
+               <input type="text" id="username" required>
+               <label>Username</label>
+            </div>
+            <div class="field">
+               <input type="password" id="password" required>
+               <label>Password</label>
+            </div>
+            <div class="content">
+               <div class="checkbox">
+                  <input type="checkbox" id="remember-me">
+                  <label for="remember-me">Remember me</label>
+               </div>
+               <div class="pass-link">
+                  <a href="#">Forgot password?</a>
+               </div>
+            </div>
+            <div class="field">
+               <input type="submit" value="Login">
+            </div>
+            <div class="signup-link">
+               Not a staff? <a href="/home">Go to homepage</a>
+            </div>
+         </form>
+      </div>
+      <script>
+         document.getElementById("loginForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            try {
+               const res = await fetch("/login", {
+                  method: "POST",
+                  headers: {
+                     "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({username, password})
+               });
+
+               const data = await res.json();
+
+               if (res.ok) {
+                  sessionStorage.setItem("token", data.token);
+                  console.log(data);
+                  alert("login successfully!!");
+                  window.location.href = "/home";
+               } else {
+                  alert(data.error || "Login failed!!");
+               }
+            
+            } catch (error) {
+               console.log(error);
+               alert("Something went wrong!!");
+            }
+         });
+      </script>
+   </body>
+</html>
