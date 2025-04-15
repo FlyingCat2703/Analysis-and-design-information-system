@@ -19,7 +19,7 @@ class AuthController {
             const result = await employee.login();
             res.status(200).json(result);
         } catch (error) {
-            return res.status(401).json({ error: error.message });
+            res.status(401).json({ error: error.message });
         }
     }
 }
