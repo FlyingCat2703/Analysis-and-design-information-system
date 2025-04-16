@@ -3,7 +3,7 @@ import Employee from "../services/employeeService.js";
 class AuthController {
     getLogin(req, res, next) {
         try {
-            res.render('login');
+            res.render("login");
         } catch (error) {
             const err = new Error("Render authentication site failed!");
             err.statusCode = 404;

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/viewExamSchedule.css">
+    <title>View Exam Schedule</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">LỊCH THI HIỆN CÓ</div>
+        <div class="search-bar">
+            <label>Chọn ngày thi</label>
+            <input type="date" id="input-date">
+        </div>
+        <div class="schedule" id="schedule-list">
+            <% schedules.forEach(schedule => { %>
+                <div class="schedule-item">
+                    <p><span><b>Ngày thi:</b> <%= schedule.date %></span></p>
+                    <p><span><b>Thời gian thi:</b> <%= schedule.startTime %> - <%= schedule.endTime %></span></p>
+                    <p><span><b>Loại chứng chỉ:</b></span> <%= schedule.certificateType %></p>
+                    <p><span><b>Cấp bậc:</b></span> <%= schedule.level %></p>
+                    <p><span><b>Số lượng hiện tại:</b></span> <%= schedule.currentQuantity || "unknown" %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <script src="/js/viewExamSchedule.js"></script>
+</body>
+</html>

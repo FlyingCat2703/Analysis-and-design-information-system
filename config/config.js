@@ -25,7 +25,7 @@ const config = {
         user: USER,
         password: PASSWORD,
         host: HOST,
-        database: DATABASE
+        database: DATABASE,
     },
     jwt_secret: JWT_SECRET,
     session_secret: SESSION_SECRET
