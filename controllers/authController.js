@@ -19,7 +19,18 @@ class AuthController {
             const result = await employee.login();
             res.status(200).json(result);
         } catch (error) {
-            return res.status(401).json({ error: error.message });
+            res.status(401).json({ error: error.message });
+        }
+    }
+
+    getLapPhieuDangKy_TuDo(req, res, next) {
+        try {
+            res.render('LapPhieuDangKy_TuDo');
+        } catch (error) {
+            const err = new Error("Render authentication site failed!");
+            err.statusCode = 404;
+            err.desc = "Something went wrong when rendering authentication!";
+            next(err);
         }
     }
 }

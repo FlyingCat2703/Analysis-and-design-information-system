@@ -16,4 +16,5 @@ const router = express.Router();
 router.get('/', authController.getLogin);
 router.post('/login', authController.login);
 
+router.get('/lap-phieu-dang-ky-tu-do', authController.getLapPhieuDangKy_TuDo);
 export default router;
