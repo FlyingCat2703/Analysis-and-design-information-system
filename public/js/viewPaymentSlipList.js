@@ -1,0 +1,24 @@
+const searchInput = document.getElementById('searchInput');
+    const items = document.querySelectorAll('.PhieuThanhToan-list li');
+
+    searchInput.addEventListener('input', function() {
+        const keyword = this.value.trim().toLowerCase();
+        items.forEach(item => {
+            const id = item.getAttribute('data-id').toLowerCase();
+            if (id.includes(keyword)) {
+                item.style.display = "flex";
+            } else {
+                item.style.display = "none";
+            }
+        });
+    });
+
+    document.querySelectorAll('.btn-lapHoaDon').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            if (id) {
+                // Điều hướng sang trang có mã phiếu
+                window.location.href = `/laphoadon/${id}`;
+            }
+        });
+    });

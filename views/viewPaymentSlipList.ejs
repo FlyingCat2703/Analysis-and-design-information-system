@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/viewPaymentSlipList.css">
+    <link rel="stylesheet" href="/fonts/fontawesome-free-6.5.2-web/css/all.min.css">
+</head>
+<body>
+    <div class="grid">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm phiếu thanh toán" class="search-input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="container">
+            
+            
+            <div class="list">
+                <ul class="PhieuThanhToan-list">
+                    <% PaymentSlips.forEach(PaymentSlip => { %>
+                        <li data-id="<%= PaymentSlip.RegistrationID %>">
+                            <div class="left-side">
+                                <span>Mã phiếu thanh toán: <%= PaymentSlip.RegistrationID %></span>
+                                <span>Ngày cấp: <%= PaymentSlip.date %></span>
+                            </div>
+                            <button class="btn-lapHoaDon" data-id="<%= PaymentSlip.id %>">Lập hóa đơn</button>
+                        </li>
+                    <% }) %>
+                    
+                    <!-- <li>
+                        <div class="left-side">
+                            <span>mã phiếu thanh toán: 123abc</span>
+                            <span>ngày cấp: 05/08/2004</span>
+                        </div>
+                        <button class="btn-lapHoaDon">Lập hóa đơn</button>
+                    </li> -->
+                
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    <script src="/js/viewPaymentSlipList.js"></script>
+</body>
+</html>

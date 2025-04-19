@@ -1,0 +1,119 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(180deg, #011C40 0%, #54ACBF);
+    font-family: 'Roboto', sans-serif;
+    justify-content: center;
+    display: flex;
+  }
+
+.grid{
+    width: 70%;
+    height: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    background-color: #26658C;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 80%;
+    align-items: center;
+    margin: auto;
+    overflow: auto;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    border-radius: 20px;
+    top: 15px;
+}
+
+.search-input {
+    position: relative;
+    top: 10px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    background-color: #a7ebf2;
+    font-weight: 600;
+}
+
+.fa-solid{
+    position: relative;
+    color: black;
+    right: 36px;
+    top: 10px;
+}
+
+.list{
+    width: 90%;
+    position: relative;
+}
+
+.list ul{
+    /* width: 100%;  */
+    padding: 0;
+    list-style: none;
+}
+
+.PhieuThanhToan-list li{
+    width: 100%;
+    height: 95px;
+    background-color: #54acbf;
+    /* margin-top: 30px; */
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: 600;
+    color: #023859;
+}
+
+.PhieuThanhToan-list li:nth-child(n+2){
+    margin-top: 30px;
+}
+
+.left-side{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    top: 2px;
+}
+
+
+.btn-lapHoaDon{
+    height: 45px;
+    width: 110px;
+    top: 26px;
+    position: relative;
+    border-radius: 20px;
+    background-color: #a7ebf2;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn-lapHoaDon:hover{
+    background-color: #9ddce3;
+}
