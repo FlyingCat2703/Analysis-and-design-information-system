@@ -20,47 +20,41 @@
             <fieldset>
                 <legend>Thông tin khách hàng</legend>
                 <label>HỌ TÊN KHÁCH HÀNG:
-                    <input type="text" name="hoTenKH" placeholder="  Nhập họ tên" required />
+                    <input id="hoTenKH" type="text" name="hoTenKH" placeholder="  Nhập họ tên" required />
                 </label>
             </fieldset>
 
             <fieldset>
                 <legend>Thông tin thí sinh</legend>
                 <label>HỌ TÊN THÍ SINH:
-                    <input type="text" name="hoTenTS" placeholder="  Nhập họ tên" required />
+                    <input id="hoTenTS" type="text" name="hoTenTS" placeholder="  Nhập họ tên" required />
                 </label>
                 <label>SỐ ĐIỆN THOẠI THÍ SINH:
-                    <input type="tel" name="sdtTS" placeholder="  Nhập số điện thoại" required />
+                    <input id="sdtTS" type="tel" name="sdtTS" placeholder="  Nhập số điện thoại" required />
                 </label>
                 <label>EMAIL THÍ SINH:
-                    <input type="email" name="emailTS" placeholder="  Nhập họ tên" required />
+                    <input id="emailTS" type="email" name="emailTS" placeholder="  Nhập họ tên" required />
                 </label>
                 <label>ĐỊA CHỈ THÍ SINH:
-                    <input type="text" name="diaChiTS" placeholder="  Nhập số địa chỉ" required />
+                    <input id="diaChiTS" type="text" name="diaChiTS" placeholder="  Nhập số địa chỉ" required />
                 </label>
             </fieldset>
 
             <fieldset>
                 <legend>Thông tin thi</legend>
-                <label>LỊCH THI:
-                    <select name="lichThi" required>
-                        <option value="">-- Chọn lịch thi --</option>
-                        <option value="2025-05-01">01/05/2025</option>
-                        <option value="2025-06-15">15/06/2025</option>
-                        <option value="2025-07-30">30/07/2025</option>
+                <label for="lichThi">LỊCH THI:
+                    <select name="lichThi" id="lichThi" required>
+                        <% schedules.forEach((schedule) => { %>
+                            <option value="<%= schedule.id %>"> ID: <%= schedule.id %> - Ngày <%= schedule.date %></option>
+                        <% }) %>
                     </select>
                 </label>
             </fieldset>
 
-            <button type="submit" class="submit-btn">THÊM ĐĂNG KÝ</button>
+            <button type="submit" class="submit-btn" id="submit-btn">THÊM ĐĂNG KÝ</button>
         </form>
     </div>
 
-    <script>
-        document.getElementById("form").addEventListener("submit", async function(event) {
-            event.preventDefault();
-            
-        })
-    </script>
+    <script src="js/LapPhieuDangKy_TuDo.js"></script>
 </body>
 </html>

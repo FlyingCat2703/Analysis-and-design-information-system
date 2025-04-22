@@ -1,6 +1,10 @@
 import express from "express";
 // import pool from "../config/db.js"
 import authController from "../controllers/authController.js";
+import RegistrationController from "../controllers/RegistrationController.js";
+import CandidateController from "../controllers/CandidateController.js";
+import ExamScheduleController from "../controllers/ExamScheduleController.js";
+import HienThiController from "../controllers/HienThiController.js";
 
 const router = express.Router();
 
@@ -16,5 +20,7 @@ const router = express.Router();
 router.get('/', authController.getLogin);
 router.post('/login', authController.login);
 
-router.get('/lap-phieu-dang-ky-tu-do', authController.getLapPhieuDangKy_TuDo);
+router.get('/lap-phieu-dang-ky-tu-do', HienThiController.HienThi_LapPhieuDangKy_TuDo);
+router.post('/add-registration', RegistrationController.addRegistration);
+router.post('/add-candidate', CandidateController.addCandidate)
 export default router;
