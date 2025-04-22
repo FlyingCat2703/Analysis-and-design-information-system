@@ -18,7 +18,7 @@ const searchInput = document.getElementById('searchInput');
             const id = this.getAttribute('data-id');
             if (id) {
                 // Điều hướng sang trang có mã phiếu
-                window.location.href = `/laphoadon/${id}`;
+                window.location.href = `/createReceipt/${id}`;
             }
         });
     });
