@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import EmployeeRepository from "../models/employee.js";
+import EmployeeRepository from "../repository/employee.js";
 import config from "../config/config.js";
 
 class Employee {

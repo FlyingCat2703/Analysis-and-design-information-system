@@ -1,5 +1,5 @@
 import Candidate from "../services/candidateServices.js";
-import CandidateRepository from "../models/candidate.js";
+import CandidateRepository from "../repository/candidate.js";
 
 const CandidateController = {
     async addCandidate(req, res) {

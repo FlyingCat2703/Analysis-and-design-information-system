@@ -1,6 +1,6 @@
 import Registration from "../services/registrationServices.js";
-import RegistrationRepository from "../models/registration.js";
-import ExamScheduleRepository from "../models/examSchedule.js";
+import RegistrationRepository from "../repository/registration.js";
+import ExamScheduleRepository from "../repository/examSchedule.js";
 
 const RegistrationController = {
     async getOrganizationRegistration(req, res, next) {

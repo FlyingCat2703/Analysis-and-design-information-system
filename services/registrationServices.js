@@ -1,6 +1,6 @@
-import RegistrationRepository from "../models/registration.js";
-import ExamScheduleRepository from "../models/examSchedule.js";
-import RoomRepository from "../models/room.js";
+import RegistrationRepository from "../repository/registration.js";
+import ExamScheduleRepository from "../repository/examSchedule.js";
+import RoomRepository from "../repository/room.js";
 
 class Registration {
     constructor({ id = null, date, quantity, status, customerName, customerType, scheduleID }) {
