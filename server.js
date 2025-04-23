@@ -26,11 +26,21 @@ app.use(express.static("./public"));
 
 app.use((err, req, res, next) => {
     const status = err.statusCode || 500;
-    res.status(status).render(`error/error${status}`, {
-        statusCode: status,
-        message: err.message,
-        desc: err.desc
-    });
+    const acceptHeader = req.headers.accept || '';
+
+    if (acceptHeader.includes('application/json')) {
+        res.status(status).json({
+            message: err.message,
+            desc: err.desc,
+            statusCode: status
+        });
+    } else {
+        res.status(status).render(`error/error${status}`, {
+            statusCode: status,
+            message: err.message,
+            desc: err.desc
+        });
+    }
 });
 
 app.listen(config.port, () => {

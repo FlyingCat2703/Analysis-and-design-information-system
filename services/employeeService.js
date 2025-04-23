@@ -42,7 +42,7 @@ class Employee {
                 name: user.name,
                 type: user.type
             };
-    
+            
             const token = jwt.sign(payload, config.jwt_secret, { expiresIn: "2h" });
             return {
                 message: "Login successfully!!",

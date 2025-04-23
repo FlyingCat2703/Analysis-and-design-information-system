@@ -2,13 +2,15 @@ import ExamScheduleRepository from "../repository/examSchedule.js";
 import { validateDateFormat, isFutureDate } from "../utils/dateUtils.js";
 
 class ExamSchedule {
-    constructor({ id = null, date = null, level = null, certificateType = null, startTime = null, endTime = null, currentQuantity = null }) {
+    constructor({ id = null, date = null, level = null, certificateType = null, startTime = null, endTime = null, currentQuantity = null, roomID = null, type = null }) {
         this.id = id;
         this.date = date;
-        this.level = level;
-        this.certificateType = certificateType;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.certificateType = certificateType;
+        this.level = level;
+        this.type = type;
+        this.roomID = roomID;
         this.currentQuantity = currentQuantity;
     }
 
@@ -16,10 +18,12 @@ class ExamSchedule {
         return new ExamSchedule({
             id: row.MaLichThi,
             date: row.NgayThi,
-            level: row.CapBac,
-            certificateType: row.LoaiChungChi,
             startTime: row.ThoiGianBatDau,
             endTime: row.ThoiGianKetThuc,
+            certificateType: row.LoaiChungChi,
+            level: row.CapBac,
+            type: row.LoaiToChuc,
+            roomID: row.MaPhongThi,
             currentQuantity: row.SoLuongHienTai
         });
     }
@@ -50,6 +54,20 @@ class ExamSchedule {
             console.log("ERROR WHEN TRYING TO GET EXAM SCHEDULE IN A SPECIFIC DATE!!");
             return null;
         }
+    }
+
+    static createSchedule(data) {
+        return new ExamSchedule(
+            data.id,
+            data.date,
+            data.startTime,
+            data.endTime,
+            data.certificateType,
+            data.level,
+            data.type,
+            data.roomID,
+            data.currentQuantity
+        );
     }
 }
 

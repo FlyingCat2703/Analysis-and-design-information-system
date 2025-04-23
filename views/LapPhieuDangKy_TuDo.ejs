@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Lập phiếu đăng ký</title>
+    <link rel="stylesheet" href="/styles/LapPhieuDangKy_TuDo.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Lập phiếu đăng ký</h1>
+            <div class="button-group">
+                <button disabled>CHO KHÁCH HÀNG TỰ DO</button>
+                <button class="active" id="organization-button">CHO KHÁCH HÀNG ĐƠN VỊ</button>
+            </div>
+        </div>
+
+        <form id="form" class="form-container" method="POST" action="/them-dang-ky">
+            <fieldset>
+                <legend>Thông tin khách hàng</legend>
+                <label>HỌ TÊN KHÁCH HÀNG:
+                    <input id="hoTenKH" type="text" name="hoTenKH" placeholder="  Nhập họ tên" required />
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Thông tin thí sinh</legend>
+                <label>HỌ TÊN THÍ SINH:
+                    <input id="hoTenTS" type="text" name="hoTenTS" placeholder="  Nhập họ tên" required />
+                </label>
+                <label>SỐ ĐIỆN THOẠI THÍ SINH:
+                    <input id="sdtTS" type="tel" name="sdtTS" placeholder="  Nhập số điện thoại" required />
+                </label>
+                <label>EMAIL THÍ SINH:
+                    <input id="emailTS" type="email" name="emailTS" placeholder="  Nhập họ tên" required />
+                </label>
+                <label>ĐỊA CHỈ THÍ SINH:
+                    <input id="diaChiTS" type="text" name="diaChiTS" placeholder="  Nhập số địa chỉ" required />
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Thông tin thi</legend>
+                <label for="lichThi">LỊCH THI:
+                    <select name="lichThi" id="lichThi" required>
+                        <% schedules.forEach((schedule) => { %>
+                            <option value="<%= schedule.id %>"> ID: <%= schedule.id %> - Ngày <%= schedule.date %></option>
+                        <% }) %>
+                    </select>
+                </label>
+            </fieldset>
+
+            <button type="submit" class="submit-btn" id="submit-btn">THÊM ĐĂNG KÝ</button>
+        </form>
+    </div>
+
+    <script src="/js/LapPhieuDangKy_TuDo.js"></script>
+</body>
+</html>

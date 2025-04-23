@@ -1,12 +1,16 @@
 import jwt from "jsonwebtoken";
-import config from "../config/config";
+import config from "../config/config.js";
 
 class AuthMiddleware {
     verifyToken(req, res, next) {
         const authHeader = req.headers.authorization;
 
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
-            return res.status(401).json({ message: "Not logged in yet" });
+            const err = new Error("Don't have access token!!");
+            err.statusCode = 404;
+            err.desc = "You have to login first!!";
+            next(err);
+            return;
         }
 
         const token = authHeader.split(" ")[1];
@@ -15,16 +19,24 @@ class AuthMiddleware {
             req.user = decoded;
             next();
         } catch (error) {
-            return res.status(401).json({ message: "Invalid token!!" });
+            const err = new Error("Invalid access token");
+            err.statusCode = 404;
+            err.desc = "You have to login first!!";
+            next(err);
         }
     }
 
     authorizeRole(...allowedRoles) {
         return (req, res, next) => {
-            const userRole = req.user?.role;
+            const userRole = req.user?.type;
             if (!userRole || !allowedRoles.includes(userRole)) {
-                return res.status(401).json({ message: "Access denied!!" });
+                res.status(404).render('../views/error/404', {
+                    message: "You don't have permission to access this page.",
+                    desc: "You have to login with a specific role to use this feature!"
+                });
+                return;
             }
+            next();
         }
     }
 }

@@ -2,7 +2,7 @@ import pool from "../config/db.js"
 import ExamSchedule from "../services/examScheduleService.js"
 
 class ExamScheduleRepository { 
-    async getExamSchedule() {
+    static async getExamSchedule() {
         try {
             const [rows] = await pool.query("SELECT * FROM LichThi WHERE NgayThi >= CURRENT_DATE + INTERVAL 14 DAY");
             if (rows) {
@@ -27,9 +27,8 @@ class ExamScheduleRepository {
         }
     }
 
-    async getExamScheduleInDate(date) {
+    static async getExamScheduleInDate(date) {
         try {
-            console.log(date);
             const [rows] = await pool.query("SELECT * FROM LichThi WHERE NgayThi = ?", [date]);
             console.log(rows);
             if (rows) {
@@ -53,6 +52,16 @@ class ExamScheduleRepository {
             return null;    
         }
     }
+
+    static async createExamSchedule(scheduleInfo) {
+        try {
+            const row = await pool.query("INSERT INTO LICHTHI (NGAYTHI, THOIGIANBATDAU, THOIGIANKETTHUC, LOAICHUNGCHI, CAPBAC, LOAITOCHUC, MAPHONGTHI, SOLUONGHIENTAI) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [scheduleInfo.date, scheduleInfo.startTime, scheduleInfo.endTime, scheduleInfo.certificateType, scheduleInfo.certificateLevel, 1, scheduleInfo.roomID, scheduleInfo.currentQuantity]);
+            return row[0].insertId;
+        } catch (error) {
+            console.log("ERROR IN CREATING NEW EXAM SCHEDULE");
+            return null;
+        }
+    }
 }
 
-export default new ExamScheduleRepository;
+export default ExamScheduleRepository;

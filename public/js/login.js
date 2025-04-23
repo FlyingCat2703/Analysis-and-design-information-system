@@ -75,7 +75,7 @@ function login() {
             sessionStorage.setItem("token", data.token);
             console.log(data);
             alert("login successfully!!");
-            window.location.href = "/home";
+            window.location.href = "/register/organization";
          } else {
             alert(data.error || "Login failed!!");
          }
