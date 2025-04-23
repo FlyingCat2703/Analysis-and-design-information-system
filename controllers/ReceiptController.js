@@ -1,7 +1,7 @@
 import Receipt_create_info from "../services/ReceiptService.js";
-import ReceiptRepository from "../models/Receipt.js";
+import ReceiptRepository from "../repository/Receipt.js";
 
-class ReceiptController {
+const ReceiptController = {
     async getViewCreteReceiptInfo(req, res, next) {
         try {
             const paymentSlipID = req.params.id;
@@ -13,7 +13,7 @@ class ReceiptController {
             err.desc = "Something went wrong when rendering create receipt!";
             next(err);
         }
-    }
+    },
 
     async createInvoice(req, res, next) {
         try {
@@ -35,4 +35,4 @@ class ReceiptController {
     }
 }
 
-export default new ReceiptController;
+export default ReceiptController;

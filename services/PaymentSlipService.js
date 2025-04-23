@@ -1,4 +1,4 @@
-import PaymentSlip_list from "../models/PaymentSlip_List.js";
+import PaymentSlip_list from "../repository/PaymentSlip_List.js";
 // import { validateDateFormat, isFutureDate } from "../utils/dateUtils.js";
 
 

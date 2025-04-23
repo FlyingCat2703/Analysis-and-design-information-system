@@ -1,4 +1,4 @@
-import ExamScheduleRepository from "../models/examSchedule.js";
+import ExamScheduleRepository from "../repository/examSchedule.js";
 import { validateDateFormat, isFutureDate } from "../utils/dateUtils.js";
 
 class ExamSchedule {

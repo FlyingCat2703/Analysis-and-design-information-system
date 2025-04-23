@@ -1,6 +1,6 @@
 import ExamSchedule from "../services/examScheduleService.js";
 
-class ExamScheduleController {
+const ExamScheduleController = {
     async getViewExamSchedule(req, res, next) {
         try {
             const currentExamSchedules = await ExamSchedule.getExamSchedule();
@@ -11,7 +11,7 @@ class ExamScheduleController {
             err.desc = "Something went wrong when rendering view exam schedule!";
             next(err);
         }
-    }
+    },
 
     async getViewExamScheduleInDate(req, res, next) {
         try {
@@ -27,4 +27,4 @@ class ExamScheduleController {
     }
 }
 
-export default new ExamScheduleController;
+export default ExamScheduleController;

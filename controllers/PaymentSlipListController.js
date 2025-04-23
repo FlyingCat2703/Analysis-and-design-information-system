@@ -1,6 +1,6 @@
 import PaymentSlip from "../services/PaymentSlipService.js";
 
-class PaymentSlipController {
+const PaymentSlipController = {
     async getViewPaymentSlipList(req, res, next) {
         try {
             const currentPaymentSlips = await PaymentSlip.getPaymentSlipList();
@@ -27,4 +27,4 @@ class PaymentSlipController {
     // }
 }
 
-export default new PaymentSlipController;
+export default PaymentSlipController;

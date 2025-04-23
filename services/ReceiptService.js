@@ -1,4 +1,4 @@
-import ReceiptRepository from "../models/Receipt.js";
+import ReceiptRepository from "../repository/Receipt.js";
 
 class Receipt_create_info{
     constructor({ PaymentSlipID = null, RegistrationID = null, RescheduleFormID = null, ExamineeName = null, ExamineePhone = null, ExamineeEmail = null, ExamineeAddress = null, subtotal = null, DiscountPercent = null, total = null, CustomerName = null }) {
