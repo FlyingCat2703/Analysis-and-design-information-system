@@ -1,0 +1,107 @@
+:root {
+    --1-color: #000000;
+    --2-color: #8f87f1;
+    --3-color: #c68efd;
+    --4-color: #e9a5f1;
+    --5-color: #fed2e2;
+}
+
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    background: #f9f9f9;
+}
+
+.wrapper {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 10px 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--5-color);
+}
+
+.header {
+    background-color: var(--5-color);
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 5px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 38px;
+    font-weight: bolder;
+}
+
+
+
+
+
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 25px;
+    border: none;
+    background-color: #b89eff;
+    cursor: pointer;
+}
+
+.registration-card {
+    background-color: #d195ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-buttons button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    background-color: #9370db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card-details {
+    margin-top: 10px;
+    background-color: #c59cff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.card-details button {
+    display: block;
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.action-button {
+    background-color: #ffb6c1;
+    color: black;
+}

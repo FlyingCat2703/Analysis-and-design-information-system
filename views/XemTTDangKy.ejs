@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Thông tin đăng ký</title>
+    <link rel="stylesheet" href="/styles/XemTTDangKy.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Thông tin đăng ký</h1>
+            <div class="search-bar">
+                <label for="search">TÌM KIẾM TÊN KHÁCH HÀNG:</label><br>
+                <input type="text" id="search" placeholder="Tìm kiếm">
+                <button>🔍</button>
+            </div>
+        </div>
+
+
+        <% registrations.forEach(function(reg) { %>
+            <div class="registration-card">
+            <div class="card-header">
+                <div>
+                <strong><%= reg.id %></strong><br>
+                <%= reg.customerName %>
+                </div>
+                <div class="card-buttons">
+                <button onclick="toggleDetail('<%= reg.id %>')">CHI TIẾT</button>
+                <button onclick="toggleDetail('<%= reg.id %>')">ẨN</button>
+                </div>
+            </div>
+            <div class="card-details" id="detail-<%= reg.id %>" style="display: none;">
+                <p>NGÀY ĐĂNG KÝ: <%= reg.date %></p>
+                <p>SỐ LƯỢNG ĐĂNG KÝ: <%= reg.quantity %></p>
+                <p>TRẠNG THÁI: <%= reg.status %></p>
+                <p>LOẠI KHÁCH HÀNG: <%= reg.customerType %></p>
+                <p>LỊCH THI: <%= reg.scheduleID %></p>
+
+                <button class="action-button">Gia hạn & cập nhật lịch thi</button>
+                <button class="action-button">Hủy đăng ký</button>
+                <button class="action-button">Tạo phiếu thanh toán</button>
+                <button class="action-button">Lập phiếu dự thi</button>
+            </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <script>
+        function toggleDetail(id) {
+            const detailEl = document.getElementById('detail-' + id);
+            if (detailEl.style.display === 'none') {
+                detailEl.style.display = 'block';
+            } else {
+                detailEl.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

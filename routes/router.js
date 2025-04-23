@@ -22,5 +22,7 @@ router.post('/login', authController.login);
 
 router.get('/lap-phieu-dang-ky-tu-do', HienThiController.HienThi_LapPhieuDangKy_TuDo);
 router.post('/add-registration', RegistrationController.addRegistration);
-router.post('/add-candidate', CandidateController.addCandidate)
+router.post('/add-candidate', CandidateController.addCandidate);
+
+router.get('/xem-tt-dang-ky', HienThiController.HienThi_XemTTDangKy);
 export default router;
