@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lập phiếu đăng ký</title>
+    <link rel="stylesheet" href="/styles/organizationRegister.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Lập phiếu đăng ký</h1>
+            <div class="button-group">
+                <button id="customer" class="active">CHO KHÁCH HÀNG TỰ DO</button>
+                <button id="organization-customer" disabled>CHO KHÁCH HÀNG ĐƠN VỊ</button>
+            </div>
+        </div>
+        <div class="container-form">
+            <form id="register-form" class="form-container">
+                <section>
+                    <label>Thông tin khách hàng</label>
+                    <input type="text" id="name" placeholder="Nhập họ tên khách hàng" required>
+                </section>
+                <section>
+                    <label>Thông tin thí sinh</label>
+                    <input type="file" accept=".csv" id="candidate-info" required> 
+                    <i><sub>Only accept .csv</sub></i>
+                </section>
+                <section>
+                    <label>Thông tin thi</label>
+                    <label for="date" class="sub-label">Ngày thi</label>
+                    <input type="date" id="date" required>
+                    <label for="start-time" class="sub-label">Giờ bắt đầu</label>
+                    <input type="time" id="start-time" required>
+                    <label for="end-time" class="sub-label">Giờ kết thúc</label>
+                    <input type="time" id="end-time" required>
+                    <label for="certificate-type" class="sub-label">Loại chứng chỉ</label>
+                    <select id="certificate-type" required>
+                        <option value="0">Tiếng Anh</option>
+                        <option value="1">Tin học</option>
+                    </select>
+                    <label for="certificate-level" class="sub-label">Cấp bậc</label>
+                    <select id="certificate-level" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </section>
+                <button id="submit-btn" class="submit-btn">THÊM ĐĂNG KÝ</button>
+            </form>
+        </div>
+    </div>
+    <script src="/js/organizationRegister.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+</body>
+</html>

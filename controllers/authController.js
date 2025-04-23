@@ -1,6 +1,6 @@
 import Employee from "../services/employeeService.js";
 
-class AuthController {
+const AuthController = {
     getLogin(req, res, next) {
         try {
             res.render("login");
@@ -10,7 +10,7 @@ class AuthController {
             err.desc = "Something went wrong when rendering authentication!";
             next(err);
         }
-    }
+    },
 
     async login(req, res, next) {
         try {
@@ -24,4 +24,4 @@ class AuthController {
     }
 }
 
-export default new AuthController;
+export default AuthController;

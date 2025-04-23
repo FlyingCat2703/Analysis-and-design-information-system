@@ -2,7 +2,7 @@ import pool from "../config/db.js"
 import Employee from "../services/employeeService.js"
 
 class EmployeeRepository {
-    async findByUsername(username) {
+    static async findByUsername(username) {
         try {
             const [rows] = await pool.query("SELECT * FROM NhanVien WHERE TaiKhoan = ?", [username]);
             if (rows) {
@@ -18,4 +18,4 @@ class EmployeeRepository {
     }
 }
 
-export default new EmployeeRepository;
+export default EmployeeRepository;

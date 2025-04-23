@@ -1,9 +1,12 @@
 import ExamSchedule from "../services/examScheduleService.js";
 
-class ExamScheduleController {
+const ExamScheduleController = {
     async getViewExamSchedule(req, res, next) {
         try {
             const currentExamSchedules = await ExamSchedule.getExamSchedule();
+            currentExamSchedules.forEach(schedule => {
+                schedule.certificateType = (schedule.certificateType === 0) ? "Tiếng Anh" : "Tin học";
+            });
             res.render("viewExamSchedule", { schedules: currentExamSchedules });
         } catch (error) {
             const err = new Error("Render view exam schedule site failed!");
@@ -11,7 +14,7 @@ class ExamScheduleController {
             err.desc = "Something went wrong when rendering view exam schedule!";
             next(err);
         }
-    }
+    },
 
     async getViewExamScheduleInDate(req, res, next) {
         try {
@@ -27,4 +30,4 @@ class ExamScheduleController {
     }
 }
 
-export default new ExamScheduleController;
+export default ExamScheduleController;
