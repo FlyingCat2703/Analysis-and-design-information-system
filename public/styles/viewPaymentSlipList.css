@@ -3,7 +3,8 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
-    background: linear-gradient(180deg, #011C40 0%, #54ACBF);
+    background: linear-gradient(180deg, #4f44d0 0%, #837dba);
+    /* background-color: #ffffff; */
     font-family: 'Roboto', sans-serif;
     justify-content: center;
     display: flex;
@@ -17,7 +18,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     position: relative;
-    background-color: #26658C;
+    background-color: #fed2e2;
     align-items: center;
     border-radius: 20px;
 }
@@ -52,7 +53,7 @@ body {
     border-radius: 20px;
     padding: 0 20px;
     box-sizing: border-box;
-    background-color: #a7ebf2;
+    background-color: #e9a5f1;
     font-weight: 600;
 }
 
@@ -77,7 +78,7 @@ body {
 .PhieuThanhToan-list li{
     width: 100%;
     height: 95px;
-    background-color: #54acbf;
+    background-color: #8f87f1;
     /* margin-top: 30px; */
     border-radius: 10px;
     position: relative;
@@ -107,7 +108,7 @@ body {
     top: 26px;
     position: relative;
     border-radius: 20px;
-    background-color: #a7ebf2;
+    background-color: #c68efd;
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -115,5 +116,5 @@ body {
 }
 
 .btn-lapHoaDon:hover{
-    background-color: #9ddce3;
+    background-color: rgb(215, 182, 248);
 }

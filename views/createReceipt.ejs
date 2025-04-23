@@ -14,30 +14,65 @@
                 <span><%= data.CustomerName %></span>
             </div>
 
-            <div class="student-name">
-                <span>Tên thí sinh</span>
-                <span><%= data.ExamineeName %></span>
+            <div class="name_or_count">
+                <% if (data.CustomerType === 0) { %>
+                    <div class="student-name">
+                        <span>Tên thí sinh</span>
+                        <span><%= data.ExamineeName %></span>
+                    </div>
+                <% } else { %>
+                    <div class="student-count">
+                        <span>Số lượng thí sinh đăng ký</span>
+                        <span><%= data.NumberOfExaminees %></span>
+                    </div>
+                <% } %>
+            </div>
+
+            
+            <div class="phone-number_or_date-create">
+                
+                <% if (data.CustomerType === 0) { %>
+                    <div class="phone-number">
+                        <span>SĐT</span>
+                        <span><%= data.ExamineePhone %></span>
+                    </div>
+                <% } else { %>
+                    <div class="date-create">
+                        <span>Ngày đăng ký</span>
+                        <span><%= data.registerDate %></span>
+                    </div>
+                <% } %>
                 
             </div>
 
-            <div class="phone-number">
-                <span>SĐT</span>
-                <span><%= data.ExamineePhone %></span>
-                
+            <div class="email_or_registerID">
+                <% if (data.CustomerType === 0) { %>
+                    <div class="email">
+                        <span>Email</span>
+                        <span><%= data.ExamineeEmail %></span>
+                    </div>
+                <% } else { %>
+                    <div class="registerID">
+                        <span>Mã phiếu đăng ký</span>
+                        <span><%= data.RegistrationID %></span>
+                    </div>
+                <% } %>
                 
             </div>
 
-            <div class="email">
-                <span>Email</span>
-                <span><%= data.ExamineeEmail %></span>
+            <div class="address_or_exam-schedule">
                 
-                
-            </div>
-
-            <div class="address">
-                <span>Địa chỉ</span>
-                <span><%= data.ExamineeAddress %></span>
-                
+                <% if (data.CustomerType === 0) { %>
+                    <div class="address">
+                        <span>Địa chỉ</span>
+                        <span><%= data.ExamineeAddress %></span>
+                    </div>
+                <% } else { %>
+                    <div class="exam-schedule">
+                        <span>Lịch thi</span>
+                        <span><%= data.examSchedule %></span>
+                    </div>
+                <% } %>
                 
             </div>
         </div>
@@ -51,7 +86,7 @@
                 <div class="date-create">
                     <span>Ngày lập hóa đơn</span>
                     <!-- lấy ngày hiện tại -->
-                    <span><%= new Date().toLocaleDateString() %></span>
+                    <span><%= new Date().toLocaleDateString('en-CA') %></span>
                 </div>
 
                 <div class="sub-total">

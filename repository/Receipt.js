@@ -7,7 +7,7 @@ class ReceiptRepository {
     static async getReceiptRepository(paymentSlipID) {
         try {
             const [rows] = await pool.query(
-                "SELECT ptt.MaPhieuThanhToan as 'Ma Phieu Thanh Toan', pdk.MaPhieuDangKi as 'Ma Phieu Dang Ki',pdk.TenKhachHang, pgh.MaPhieuGiaHan as 'Ma Phieu Gia Han', ts.HoTen as 'ho ten thi sinh', ts.SDT, ts.Email, ts.DiaChi, ptt.ThanhTien, ptt.PhanTramGiamGia, ptt.SoTienCanTra " +
+                "SELECT ptt.MaPhieuThanhToan as 'Ma Phieu Thanh Toan', pdk.NgayDangKy, pdk.LichThi, pdk.MaPhieuDangKi as 'Ma Phieu Dang Ki',pdk.TenKhachHang, pdk.LoaiKhachHang, pdk.SoLuongDangKi, pgh.MaPhieuGiaHan as 'Ma Phieu Gia Han', ts.HoTen as 'ho ten thi sinh', ts.SDT, ts.Email, ts.DiaChi, ptt.ThanhTien, ptt.PhanTramGiamGia, ptt.SoTienCanTra " +
                 "FROM PhieuThanhToan ptt " +
                 "LEFT JOIN PhieuDangKi pdk ON ptt.MaPhieuDangKi = pdk.MaPhieuDangKi " +
                 "LEFT JOIN PhieuGiaHan pgh ON pgh.MaPhieuDangKi = pdk.MaPhieuDangKi " +

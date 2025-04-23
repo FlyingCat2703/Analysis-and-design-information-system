@@ -1,7 +1,7 @@
 import ReceiptRepository from "../repository/Receipt.js";
 
 class Receipt_create_info{
-    constructor({ PaymentSlipID = null, RegistrationID = null, RescheduleFormID = null, ExamineeName = null, ExamineePhone = null, ExamineeEmail = null, ExamineeAddress = null, subtotal = null, DiscountPercent = null, total = null, CustomerName = null }) {
+    constructor({ PaymentSlipID = null, RegistrationID = null, RescheduleFormID = null, ExamineeName = null, ExamineePhone = null, ExamineeEmail = null, ExamineeAddress = null, subtotal = null, DiscountPercent = null, total = null, CustomerName = null, CustomerType = null, NumberOfExaminees = null, registerDate = null, examSchedule = null }) {
         this.PaymentSlipID = PaymentSlipID;
         this.RegistrationID = RegistrationID;
         this.RescheduleFormID = RescheduleFormID;
@@ -13,6 +13,10 @@ class Receipt_create_info{
         this.DiscountPercent = DiscountPercent;
         this.total = total;
         this.CustomerName = CustomerName;
+        this.CustomerType = CustomerType;
+        this.NumberOfExaminees = NumberOfExaminees;
+        this.registerDate = registerDate;
+        this.examSchedule = examSchedule;
     }
 
     static fromDB(row) {
@@ -28,6 +32,10 @@ class Receipt_create_info{
             subtotal: row.ThanhTien,
             DiscountPercent: row.PhanTramGiamGia,
             total: row.SoTienCanTra,
+            CustomerType: row.LoaiKhachHang,
+            NumberOfExaminees: row.SoLuongDangKi,
+            registerDate: row.NgayDangKy instanceof Date ? row.NgayDangKy.toLocaleDateString('en-CA') : new Date(row.NgayDangKy).toLocaleDateString('en-CA'),
+            examSchedule: row.LichThi
         });
     }
 
