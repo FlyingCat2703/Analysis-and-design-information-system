@@ -1,22 +1,22 @@
 import pool from "../config/db.js"
 import PaymentSlip from "../services/PaymentSlipService.js"
 
-class PaymentSlip_list {
-    async getPaymentSlipList() {
+class PaymentSlipRepository {
+    static async getPaymentSlipList() {
         try{
             const [rows] = await pool.query("SELECT PhieuThanhToan.* FROM PhieuThanhToan, PhieuDangKi WHERE PhieuThanhToan.MaPhieuDangKi = PhieuDangKi.MaPhieuDangKi AND PhieuDangKi.TrangThai = 0")
             if(rows){
                 let listPaymentSlip = []
                 rows.forEach(row => {
-                    const paymentSlip = PaymentSlip.fromDB(row)
+                    const paymentSlip = PaymentSlip.fromDB(row);
 
                     // convert date to yyyy-mm-dd
                     const dateObj = new Date(paymentSlip.date);
                     paymentSlip.date = dateObj.toLocaleDateString('en-CA');
 
-                    listPaymentSlip.push(paymentSlip)
+                    listPaymentSlip.push(paymentSlip);
                 })
-                return listPaymentSlip
+                return listPaymentSlip;
             }else{
                 return []
             }
@@ -27,4 +27,4 @@ class PaymentSlip_list {
     }
 }
 
-export default new PaymentSlip_list;
+export default PaymentSlipRepository;

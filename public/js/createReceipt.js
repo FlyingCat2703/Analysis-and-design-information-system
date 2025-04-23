@@ -1,34 +1,34 @@
 const paymentSlipID = document.getElementById('maphieuthanhtoan').textContent.trim();
 const registrationID = document.getElementById('RegistrationID').textContent.replace('Mã Phiếu Đăng Ký: ', '').trim();
-const rescheduleFormID = document.getElementById('maphieugiahan').textContent.trim();
+// const rescheduleFormID = document.getElementById('maphieugiahan').textContent.trim();
 const totalText = document.getElementById('Total').textContent.trim().replace('đ', '');
 const total = Number(totalText);
+const token = sessionStorage.getItem("token");
 
+if (!token) {
+    window.location.href = "/";
+}
 
-document.querySelector('.bottom-right-bar').addEventListener('click', function() {
-    document.getElementById('staffOverlay').style.display = 'flex';
-});
+// document.querySelector('.bottom-right-bar').addEventListener('click', function() {
+//     document.getElementById('staffOverlay').style.display = 'flex';
+// });
 
-document.getElementById('cancelInvoice').addEventListener('click', function() {
-    document.getElementById('staffOverlay').style.display = 'none';
-});
+// document.getElementById('cancelInvoice').addEventListener('click', function() {
+//     document.getElementById('staffOverlay').style.display = 'none';
+// });
 
-document.getElementById('confirmInvoice').addEventListener('click', function() {
-    const staffCode = document.getElementById('staffCode').value.trim();
-    if (!staffCode) {
-        alert("Vui lòng nhập mã nhân viên phụ trách!");
-        return;
-    }
-
+document.getElementById('confirmInvoice').addEventListener('click', function () {
     fetch('/api/createInvoice', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             PaymentSlipID: paymentSlipID,
             RegistrationID: registrationID,
-            RescheduleFormID: rescheduleFormID,
-            Total: total,
-            StaffCode: staffCode
+            // RescheduleFormID: rescheduleFormID,
+            Total: total
         })
     })
     .then(res => res.json())

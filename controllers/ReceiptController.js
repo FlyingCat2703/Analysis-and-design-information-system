@@ -17,20 +17,19 @@ const ReceiptController = {
 
     async createInvoice(req, res, next) {
         try {
-            console.log(req.body);
-            const { PaymentSlipID, RegistrationID, RescheduleFormID, Total, StaffCode } = req.body;
+            const StaffCode = req.user?.id;
+            const { PaymentSlipID, RegistrationID, Total } = req.body;
             const dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    
-            const success = await ReceiptRepository.insertInvoice(dateNow, Total, RescheduleFormID, RegistrationID, PaymentSlipID, StaffCode);
-    
+            const success = await ReceiptRepository.insertInvoice(dateNow, Total, RegistrationID, PaymentSlipID, StaffCode);
+            
             if (success) {
-                res.json({ success: true });
+                res.status(200).json({ success: true });
             } else {
-                res.json({ success: false });
+                res.status(404).json({ success: false });
             }
         } catch (error) {
             console.error("Error creating invoice:", error);
-            res.json({ success: false });
+            res.status(404).json({ success: false });
         }
     }
 }

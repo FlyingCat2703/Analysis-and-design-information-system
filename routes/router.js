@@ -25,11 +25,12 @@ router.get('/register/customer', registrationController.HienThi_LapPhieuDangKy_T
 router.post('/add-registration', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(3), registrationController.addRegistration);
 router.post('/add-candidate', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(3), CandidateController.addCandidate)
 
-
+// payment slip
 router.get('/viewPaymentSlip', PaymentSlipController.getViewPaymentSlipList);
 
+// receipt
 router.get('/createReceipt/:id', ReceiptController.getViewCreteReceiptInfo);
-router.post('/api/createInvoice', ReceiptController.createInvoice);
+router.post('/api/createInvoice', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(2), ReceiptController.createInvoice);
 
 
 export default router;

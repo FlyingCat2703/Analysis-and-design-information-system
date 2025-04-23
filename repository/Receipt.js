@@ -4,7 +4,7 @@ import Receipt_create_info from "../services/ReceiptService.js"
 
 
 class ReceiptRepository {
-    async getReceiptRepository(paymentSlipID) {
+    static async getReceiptRepository(paymentSlipID) {
         try {
             const [rows] = await pool.query(
                 "SELECT ptt.MaPhieuThanhToan as 'Ma Phieu Thanh Toan', pdk.MaPhieuDangKi as 'Ma Phieu Dang Ki',pdk.TenKhachHang, pgh.MaPhieuGiaHan as 'Ma Phieu Gia Han', ts.HoTen as 'ho ten thi sinh', ts.SDT, ts.Email, ts.DiaChi, ptt.ThanhTien, ptt.PhanTramGiamGia, ptt.SoTienCanTra " +
@@ -26,14 +26,14 @@ class ReceiptRepository {
         }
     }
 
-    async insertInvoice(NgayLapHoaDon, ThanhTien, MaPhieuGiaHan, MaPhieuDangKi, MaPhieuThanhToan, NVKTPhuTrach) {
+    static async insertInvoice(NgayLapHoaDon, ThanhTien, MaPhieuDangKi, MaPhieuThanhToan, NVKTPhuTrach) {
         const connection = await pool.getConnection();
         try {
             await connection.beginTransaction();
     
             await connection.query(
-                "INSERT INTO HoaDon (NgayLapHoaDon, ThanhTien, MaPhieuGiaHan, MaPhieuDangKi, MaPhieuThanhToan, NVKTPhuTrach) VALUES (?, ?, ?, ?, ?, ?)",
-                [NgayLapHoaDon, ThanhTien, MaPhieuGiaHan, MaPhieuDangKi, MaPhieuThanhToan, NVKTPhuTrach]
+                "INSERT INTO HoaDon (NgayLapHoaDon, ThanhTien, MaPhieuDangKi, MaPhieuThanhToan, NVKTPhuTrach) VALUES (?, ?, ?, ?, ?)",
+                [NgayLapHoaDon, ThanhTien, MaPhieuDangKi, MaPhieuThanhToan, NVKTPhuTrach]
             );
     
             await connection.query(
@@ -54,4 +54,4 @@ class ReceiptRepository {
     
 }
 
-export default new ReceiptRepository();
+export default ReceiptRepository;
