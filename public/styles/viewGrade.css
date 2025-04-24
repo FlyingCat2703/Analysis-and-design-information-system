@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e6ccff;
+    border-radius: 4px;
+}
+
+.search-box button {
+    padding: 10px 20px;
+    background-color: #e6b3e6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background-color: #ffccff;
+}
+
+.result-box {
+    padding: 15px;
+    border-top: 1px solid #e6b3e6;
+}
+
+.ticket {
+    background-color: #ffe6f0;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e6b3e6;
+}
+
+.ticket p {
+    margin: 8px 0;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
