@@ -1,11 +1,11 @@
-function redirectToLogin() {
+function btnDangNhap_click() {
     window.location.href = "/login";
 }
 
-function redirectToSchedule() {
+function btnXemLichThi_click() {
     window.location.href = "/viewExamSchedule";
 }
 
-function redirectToRules() {
+function btnXemQuyDinh_click() {
     window.location.href = "/viewRules";
 }

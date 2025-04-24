@@ -30,7 +30,6 @@ class ExamScheduleRepository {
     static async getExamScheduleInDate(date) {
         try {
             const [rows] = await pool.query("SELECT * FROM LichThi WHERE NgayThi = ?", [date]);
-            console.log(rows);
             if (rows) {
                 let listExamSchedule = []
                 rows.forEach(row => {

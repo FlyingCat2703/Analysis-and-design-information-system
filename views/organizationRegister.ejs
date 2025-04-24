@@ -23,8 +23,9 @@
                 </section>
                 <section>
                     <label>Thông tin thí sinh</label>
-                    <input type="file" accept=".csv" id="candidate-info" required> 
-                    <i><sub>Only accept .csv</sub></i>
+                    <input type="file" accept=".csv" id="candidate-info" required>
+                    <div id="file-name-display"></div>
+                    <i><sub>Only accept .csv which is formatted as [Ten,So dien thoai,Email,Dia chi]</sub></i>
                 </section>
                 <section>
                     <label>Thông tin thi</label>
@@ -55,6 +56,7 @@
                         <option value="12">12</option>
                     </select>
                 </section>
+                <div id="error-message"></div>
                 <button id="submit-btn" class="submit-btn">THÊM ĐĂNG KÝ</button>
             </form>
         </div>

@@ -38,7 +38,7 @@ body {
 
 .button-group button {
     width: 300px;
-    margin: 0 35px; /* Increased margin to create larger spacing between buttons */
+    margin: 0 35px;
     padding: 10px 15px;
     font-weight: bold;
     font-size: medium;
@@ -118,4 +118,10 @@ input[type="file"] {
 
 .submit-btn:hover {
     background-color: #d273f0;
+}
+
+#error-message {
+    display: none;
+    color: red;
+    text-align: left;
 }

@@ -1,9 +1,16 @@
 let candidateInfo = [];
 const token = sessionStorage.getItem("token");
+const fileInput = document.getElementById("candidate-info");
 
 if (!token) {
     window.location.href = "/";
 }
+
+function showErrorMessage(message) {
+    const errorDiv = document.getElementById("error-message");
+    errorDiv.textContent = message;
+    errorDiv.style.display = "block";
+ }
 
 document.getElementById('candidate-info').addEventListener('change', function (event) {
     const file = event.target.files[0];
@@ -11,6 +18,15 @@ document.getElementById('candidate-info').addEventListener('change', function (e
         alert('No file selected');
         return;
     }
+
+    let fileNameDisplay = document.getElementById('file-name-display');
+    if (!fileNameDisplay) {
+        fileNameDisplay = document.createElement('div');
+        fileNameDisplay.id = 'file-name-display';
+        fileNameDisplay.style.marginTop = '5px';
+        fileInput.parentNode.appendChild(fileNameDisplay);
+    }
+    fileNameDisplay.textContent = `${file.name}`;
 
     Papa.parse(file, {
         header: true,
@@ -33,6 +49,23 @@ document.getElementById('candidate-info').addEventListener('change', function (e
                 return;
             }
 
+            const invalidRows = [];
+            candidateInfo.forEach((row, index) => {
+                const missingFields = requiredColumns.filter(col => {
+                    const value = row[col];
+                    return value === undefined || value === null || value.trim() === '';
+                });
+                if (missingFields.length > 0) {
+                    invalidRows.push(`Row ${index + 2}: Missing or empty ${missingFields.join(', ')}`);
+                }
+            });
+
+            if (invalidRows.length > 0) {
+                alert(`Invalid rows detected:\n${invalidRows.join('\n')}`);
+                document.getElementById("candidate-info").value = "";
+                candidateInfo = [];
+                return;
+            }
         },
         error: function(error) {
             console.error('Error parsing CSV:', error);
@@ -82,7 +115,7 @@ document.getElementById("submit-btn").addEventListener("click", async function (
         const data = await res.json();
 
         if (!res.ok) {
-            alert(`${data.message}`);
+            showErrorMessage(`${data.message}`);
         } else {
             alert(`${data.message}`);
             document.getElementById("register-form").reset();

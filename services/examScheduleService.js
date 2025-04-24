@@ -31,6 +31,9 @@ class ExamSchedule {
     static async getExamSchedule() {
         try {
             const examSchedules = await ExamScheduleRepository.getExamSchedule();
+            examSchedules.forEach(schedule => {
+                schedule.certificateType = (schedule.certificateType === 0) ? "Tiếng Anh" : "Tin học";
+            });
             return examSchedules;
         } catch (error) {
             console.log("ERROR WHEN TRYING TO GET EXAM SCHEDULE!!");
