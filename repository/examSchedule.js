@@ -4,7 +4,7 @@ import ExamSchedule from "../services/examScheduleService.js"
 class ExamScheduleRepository { 
     static async getExamSchedule() {
         try {
-            const [rows] = await pool.query("SELECT * FROM LichThi WHERE NgayThi >= CURRENT_DATE + INTERVAL 14 DAY");
+            const [rows] = await pool.query("SELECT * FROM LichThi WHERE NgayThi >= NOW()");
             if (rows) {
                 let listExamSchedule = []
                 rows.forEach(row => {

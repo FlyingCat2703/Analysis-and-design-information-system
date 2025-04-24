@@ -4,7 +4,7 @@ import RoomRepository from "../repository/room.js";
 import ExamSchedule from "./examScheduleService.js";
 
 class Registration {
-    constructor({ id = null, date, quantity, status, customerName, customerType, scheduleID }) {
+    constructor({ id = null, date, quantity, status, customerName, customerType, scheduleID, currentEmployee = null }) {
         this.id = id;
         this.date = date;
         this.quantity = quantity;
@@ -12,6 +12,7 @@ class Registration {
         this.customerName = customerName;
         this.customerType = customerType;
         this.scheduleID = scheduleID;
+        this.currentEmployee = currentEmployee;
     }
 
     static fromDB(row) {
@@ -22,8 +23,32 @@ class Registration {
             status: row.TrangThai,
             customerName: row.TenKhachHang,
             customerType: row.LoaiKhachHang,
-            scheduleID: row.LichThi
+            scheduleID: row.LichThi,
+            currentEmployee: row.NVTNPhuTrach
         });
+    }
+
+    static createRegistration(data) {
+        return new Registration(
+            data.id,
+            data.date,
+            data.quantity,
+            data.status,
+            data.customerName,
+            data.customerType,
+            data.scheduleID,
+            data.currentEmployee
+        );
+    }
+
+    static async addRegistration() {
+        try {
+            const result = await RegistrationRepository.addRegistration(this);
+            return result;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
     }
 
     static async createOrganizationRegistration(registrationInfo) {
@@ -59,18 +84,6 @@ class Registration {
             console.log("ERROR WHEN TRYING TO CREATE REGISTRATION!!");
             return null;
         }
-    }
-
-    static createRegistration(data) {
-        return new Registration(
-            data.id,
-            data.date,
-            data.quantity,
-            data.status,
-            data.customerName,
-            data.customerType,
-            data.scheduleID
-        );
     }
 }
 

@@ -1,3 +1,5 @@
+import CandidateRepository from "../repository/candidate.js";
+
 class Candidate {
     constructor({id = null, name, phoneNumber, home, email, registrationID}) {
         this.id = id;
@@ -28,6 +30,16 @@ class Candidate {
             data.email,
             data.registrationID
         )
+    }
+
+    static async addCandidate() {
+        try {
+            const result = await CandidateRepository.addCandidate(this);
+            return result;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
     }
 }
 
