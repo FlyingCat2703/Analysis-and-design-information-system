@@ -1,6 +1,6 @@
 import ReceiptRepository from "../repository/Receipt.js";
 
-class Receipt_create_info{
+class Receipt{
     constructor({ PaymentSlipID = null, RegistrationID = null, RescheduleFormID = null, ExamineeName = null, ExamineePhone = null, ExamineeEmail = null, ExamineeAddress = null, subtotal = null, DiscountPercent = null, total = null, CustomerName = null, CustomerType = null, NumberOfExaminees = null, registerDate = null, examSchedule = null }) {
         this.PaymentSlipID = PaymentSlipID;
         this.RegistrationID = RegistrationID;
@@ -20,7 +20,7 @@ class Receipt_create_info{
     }
 
     static fromDB(row) {
-        return new Receipt_create_info({
+        return new Receipt({
             PaymentSlipID: row['Ma Phieu Thanh Toan'],
             RegistrationID: row['Ma Phieu Dang Ki'],
             RescheduleFormID: row['Ma Phieu Gia Han'],
@@ -48,6 +48,16 @@ class Receipt_create_info{
             return null;
         }
     }
+
+    static async addInvoice(invoiceInfo) {
+        try {
+            const success = await ReceiptRepository.insertInvoice(invoiceInfo.dateNow, invoiceInfo.Total, invoiceInfo.RegistrationID, invoiceInfo.PaymentSlipID, invoiceInfo.StaffCode);
+            return success;
+        } catch (error) {
+            console.log("ERROR WHEN TRYING TO ADD INVOICE!!");
+            return null;
+        }
+    }
 }
 
-export default Receipt_create_info;
+export default Receipt;

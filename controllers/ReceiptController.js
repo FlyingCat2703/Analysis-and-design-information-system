@@ -1,11 +1,10 @@
-import Receipt_create_info from "../services/ReceiptService.js";
-import ReceiptRepository from "../repository/Receipt.js";
+import Receipt from "../services/ReceiptService.js";
 
 const ReceiptController = {
     async getViewCreteReceiptInfo(req, res, next) {
         try {
             const paymentSlipID = req.params.id;
-            const currentReceiptInfo = await Receipt_create_info.getReceiptRepository(paymentSlipID);
+            const currentReceiptInfo = await Receipt.getReceiptRepository(paymentSlipID);
             res.render("createReceipt", { data: currentReceiptInfo });
         } catch (error) {
             const err = new Error("Render create receipt site failed!");
@@ -20,7 +19,14 @@ const ReceiptController = {
             const StaffCode = req.user?.id;
             const { PaymentSlipID, RegistrationID, Total } = req.body;
             const dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
-            const success = await ReceiptRepository.insertInvoice(dateNow, Total, RegistrationID, PaymentSlipID, StaffCode);
+            const invoiceInfo = {
+                dateNow: dateNow,
+                Total: Total,
+                RegistrationID: RegistrationID,
+                PaymentSlipID: PaymentSlipID,
+                StaffCode: StaffCode
+            }
+            const success = await Receipt.addInvoice(invoiceInfo);
             
             if (success) {
                 res.status(200).json({ success: true });
