@@ -460,3 +460,9 @@ iframe {
     opacity: 1;
   }
 }
+
+#error-message {
+  display: none;
+  color: red;
+  text-align: center;
+}

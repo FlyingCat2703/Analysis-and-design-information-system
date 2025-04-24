@@ -1,6 +1,7 @@
 import RegistrationRepository from "../repository/registration.js";
 import ExamScheduleRepository from "../repository/examSchedule.js";
 import RoomRepository from "../repository/room.js";
+import ExamSchedule from "./examScheduleService.js";
 
 class Registration {
     constructor({ id = null, date, quantity, status, customerName, customerType, scheduleID }) {
@@ -43,7 +44,7 @@ class Registration {
                 currentQuantity: registrationInfo.candidateInfo.length
             }
 
-            const createdSchedule = await ExamScheduleRepository.createExamSchedule(scheduleInfo);
+            const createdSchedule = await ExamSchedule.newSchedule(scheduleInfo);
 
             const registrationInfoSliced = {
                 currentQuantity: registrationInfo.candidateInfo.length,
@@ -53,7 +54,7 @@ class Registration {
             };
     
             const createdRegistration = await RegistrationRepository.createOrganizationRegistration(registrationInfoSliced, registrationInfo.candidateInfo);
-            return 1;
+            return createdRegistration;
         } catch (error) {
             console.log("ERROR WHEN TRYING TO CREATE REGISTRATION!!");
             return null;

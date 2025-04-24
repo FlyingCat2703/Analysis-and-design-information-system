@@ -29,12 +29,12 @@ class Employee {
     
             const user = await EmployeeRepository.findByUsername(this.username);
             if (!user) {
-                throw new Error("Username does not exist!!");
+                return { message: "Username does not exist!!" };
             }
     
             const isMatch = this.password === user.password;
             if (!isMatch) {
-                throw new Error("Incorrect password!!");
+                return { message: "Incorrect password!!" };
             }
     
             const payload = {

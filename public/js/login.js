@@ -1,7 +1,5 @@
 // (function ($) {
 //    "use strict";
-
-   
 //    /*==================================================================
 //    [ Validate ]*/
 //    var input = $('.validate-input .input100');
@@ -54,6 +52,12 @@
    
 
 // })(jQuery);
+function showErrorMessage(message) {
+   const errorDiv = document.getElementById("error-message");
+   errorDiv.textContent = message;
+   errorDiv.style.display = "block";
+}
+
 function login() {
    document.getElementById("loginForm").addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -73,13 +77,11 @@ function login() {
   
          if (res.ok) {
             sessionStorage.setItem("token", data.token);
-            console.log(data);
-            alert("login successfully!!");
-            window.location.href = "/register/organization";
+            showErrorMessage("Login successfully!!");
+            window.location.href = "/register/customer";
          } else {
-            alert(data.error || "Login failed!!");
+            showErrorMessage(data.message || "Login failed!!");
          }
-      
       } catch (error) {
          console.log(error);
          alert("Something went wrong!!");

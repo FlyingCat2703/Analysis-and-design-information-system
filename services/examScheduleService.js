@@ -69,6 +69,16 @@ class ExamSchedule {
             data.currentQuantity
         );
     }
+
+    static async newSchedule(scheduleInfo) {
+        try {
+            const createdSchedule = await ExamScheduleRepository.createExamSchedule(scheduleInfo);
+            return createdSchedule;
+        } catch (error) {
+            console.log("ERROR WHEN TRYING TO CREATE NEW SCHEDULE");
+            return null;
+        }
+    }
 }
 
 export default ExamSchedule;

@@ -17,7 +17,11 @@ const AuthController = {
             const { username, password } = req.body;
             const employee = new Employee({ username: username, password: password });
             const result = await employee.login();
-            res.status(200).json(result);
+            if (result.token) {
+                res.status(200).json(result);
+            } else {
+                res.status(404).json({ message: result.message });
+            }
         } catch (error) {
             res.status(401).json({ error: error.message });
         }
