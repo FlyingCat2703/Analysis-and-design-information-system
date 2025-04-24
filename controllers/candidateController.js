@@ -8,7 +8,6 @@ const CandidateController = {
             const result = await CandidateRepository.addCandidate(candidate);
             res.status(201).json({ message: 'Đăng ký thi sinh', id: result });
         } catch (error) {
-
             res.status(500).json({ error: error.message });
         }
     }
