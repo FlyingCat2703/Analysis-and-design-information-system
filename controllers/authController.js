@@ -25,6 +25,17 @@ const AuthController = {
         } catch (error) {
             res.status(401).json({ error: error.message });
         }
+    },
+
+    getHomepage(req, res, next) {
+        try {
+            res.render("homepage");
+        } catch (error) {
+            const err = new Error("Render homepage failed!");
+            err.statusCode = 404;
+            err.desc = "Something went wrong when rendering homepage!";
+            next(err);
+        }
     }
 }
 

@@ -8,8 +8,11 @@ import CandidateController from "../controllers/candidateController.js";
 
 const router = express.Router();
 
+// homepage
+router.get("/", authController.getHomepage);
+
 // handle authentication 
-router.get("/", authController.getLogin);
+router.get("/login", authController.getLogin);
 router.post("/login", authController.login);
 
 // handle exam schedule
