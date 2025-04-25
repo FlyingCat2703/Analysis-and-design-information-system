@@ -18,7 +18,7 @@ const TicketController = {
             const grade = await Ticket.getTicket(candidateNumber);
 
             if (grade) {
-                res.json({ success: true, result: grade });
+                res.status(200).json({ success: true, result: grade });
             } else {
                 res.status(404).json({ success: false, message: "Không tìm thấy kết quả cho số báo danh này." });
             }
