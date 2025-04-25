@@ -15,11 +15,11 @@ async function searchTicket() {
 
         if (res.ok && data.success && data.result) {
             const { candidateName, certificateType, level, grade } = data.result;
-
+            const certificateName = (certificateType === 1) ? "Tiếng Anh" : "Tin học";
             resultBox.innerHTML = `
                 <div class="ticket">
                     <p><strong>Họ tên:</strong> ${candidateName}</p>
-                    <p><strong>Loại chứng chỉ:</strong> ${certificateType}</p>
+                    <p><strong>Loại chứng chỉ:</strong> ${certificateName}</p>
                     <p><strong>Cấp bậc:</strong> ${level}</p>
                     <p><strong>Điểm:</strong> ${grade}</p>
                 </div>
