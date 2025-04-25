@@ -45,7 +45,7 @@
                 
             </div>
 
-            <div class="email_or_registerID">
+            <div class="email_or_PaymentSlipID">
                 <% if (data.CustomerType === 0) { %>
                     <div class="email">
                         <span>Email</span>
@@ -53,8 +53,8 @@
                     </div>
                 <% } else { %>
                     <div class="registerID">
-                        <span>Mã phiếu đăng ký</span>
-                        <span><%= data.RegistrationID %></span>
+                        <span>Mã phiếu thanh toán</span>
+                        <span><%= data.PaymentSlipID %></span>
                     </div>
                 <% } %>
                 
