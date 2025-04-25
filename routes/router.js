@@ -7,6 +7,7 @@ import ReceiptController from "../controllers/ReceiptController.js";
 import registrationController from "../controllers/registrationController.js";
 import AuthMiddleware from "../middlewares/authMiddleware.js";
 import CandidateController from "../controllers/candidateController.js";
+import ticketController from "../controllers/TicketController.js";
 
 const router = express.Router();
 
@@ -34,6 +35,10 @@ router.get('/viewPaymentSlip', PaymentSlipController.getViewPaymentSlipList);
 // receipt
 router.get('/createReceipt/:id', ReceiptController.getViewCreteReceiptInfo);
 router.post('/api/createInvoice', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(2), ReceiptController.createInvoice);
+
+// grade
+router.get("/viewGrade", ticketController.getViewGrade);
+router.get("/ticket/result", ticketController.getTicket);
 
 
 export default router;
