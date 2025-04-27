@@ -1,7 +1,7 @@
 import TicketRepository from "../repository/Ticket.js";
 
 class Ticket {
-    constructor({ candidateName = null, certificateType = null, level = null, grade = null, TicketID = null, CandidateID = null, RegistrationID = null, ExamScheduleID = null }) {
+    constructor({ candidateName = null, certificateType = null, level = null, grade = null, TicketID = null, CandidateID = null, RegistrationID = null, ExamScheduleID = null, candidateNumber = null }) {
         this.candidateName = candidateName;
         this.certificateType = certificateType;
         this.level = level;
@@ -10,6 +10,7 @@ class Ticket {
         this.CandidateID = CandidateID;
         this.RegistrationID = RegistrationID;
         this.ExamScheduleID = ExamScheduleID;
+        this.candidateNumber = candidateNumber;
     }
 
     static fromDB(row) {
@@ -21,7 +22,8 @@ class Ticket {
             TicketID: row["Ma Phieu Du Thi"],
             CandidateID: row["Ma Thi Sinh"],
             RegistrationID: row["Ma Phieu Dang Ki"],
-            ExamScheduleID: row["Ma Lich Thi"]
+            ExamScheduleID: row["Ma Lich Thi"],
+            candidateNumber: row.candidateNumber
         });
     }
 
@@ -33,6 +35,15 @@ class Ticket {
             console.error("ERROR WHEN GETTING TICKET BY CANDIDATE NUMBER!", error);
             return null;
         }
+    }
+
+    static createTicket(data) {
+        return new Ticket(
+            data.TicketID,
+            data.candidateNumber,
+            data.grade,
+            data.RegistrationID
+        );
     }
 }
 

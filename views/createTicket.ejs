@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/createTicket.css">
+    <title>Danh sách Thí sinh</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Lập phiếu đăng kí</div>
+
+        <div class="candidate-list" id="candidate-list">
+            <% if (candidates && candidates.length > 0) { %>
+                <% candidates.forEach(candidate => { %>
+                    <div class="candidate-item">
+                        <p><strong>Họ tên:</strong> <%= candidate.HoTen %></p>
+                        <p><strong>Điện thoại:</strong> <%= candidate.SDT %></p>
+                        <p><strong>Email:</strong> <%= candidate.Email %></p>
+                        <button class="button" data-candidate-id="<%= candidate.MaThiSinh %>">Lập Ticket</button>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Không có thí sinh nào trong danh sách.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <script src="/js/createTicket.js"></script>
+</body>
+</html>

@@ -32,8 +32,8 @@ class ReceiptRepository {
             await connection.beginTransaction();
     
             await connection.query(
-                "INSERT INTO HoaDon (NgayLapHoaDon, ThanhTien, MaPhieuDangKi, MaPhieuThanhToan, NVKTPhuTrach) VALUES (?, ?, ?, ?, ?)",
-                [NgayLapHoaDon, ThanhTien, MaPhieuDangKi, MaPhieuThanhToan, NVKTPhuTrach]
+                "INSERT INTO HoaDon (NgayLapHoaDon, ThanhTien, MaPhieuThanhToan, NVKTPhuTrach) VALUES (?, ?, ?, ?)",
+                [NgayLapHoaDon, ThanhTien, MaPhieuThanhToan, NVKTPhuTrach]
             );
     
             await connection.query(

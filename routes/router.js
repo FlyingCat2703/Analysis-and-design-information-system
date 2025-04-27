@@ -8,6 +8,8 @@ import registrationController from "../controllers/registrationController.js";
 import AuthMiddleware from "../middlewares/authMiddleware.js";
 import CandidateController from "../controllers/candidateController.js";
 import ticketController from "../controllers/TicketController.js";
+import CandidateController from "../controllers/candidateController.js";
+import TicketController from "../controllers/TicketController.js";
 
 const router = express.Router();
 
@@ -39,6 +41,10 @@ router.post('/api/createInvoice', AuthMiddleware.verifyToken, AuthMiddleware.aut
 // grade
 router.get("/viewGrade", ticketController.getViewGrade);
 router.get("/ticket/result", ticketController.getTicket);
+
+// candidate
+router.get("/viewCandidates", CandidateController.getCandidatesByRegistrationID);
+router.get('/add-ticket', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(1), TicketController.addTicket)
 
 
 export default router;
