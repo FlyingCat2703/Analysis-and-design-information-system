@@ -7,6 +7,7 @@ import ReceiptController from "../controllers/ReceiptController.js";
 import registrationController from "../controllers/registrationController.js";
 import AuthMiddleware from "../middlewares/authMiddleware.js";
 import LapPhieuDangKy_TuDoController from "../controllers/LapPhieuDangKy_TuDoController.js";
+import XemTTDangKyController from "../controllers/XemTTDangKyController.js";
 
 const router = express.Router();
 
@@ -35,5 +36,6 @@ router.get('/viewPaymentSlip', PaymentSlipController.getViewPaymentSlipList);
 router.get('/createReceipt/:id', ReceiptController.getViewCreteReceiptInfo);
 router.post('/api/createInvoice', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(2), ReceiptController.createInvoice);
 
+router.get('/xem-tt-dang-ky', XemTTDangKyController.HienThi);
 
 export default router;

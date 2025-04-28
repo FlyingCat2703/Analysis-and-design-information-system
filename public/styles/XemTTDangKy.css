@@ -1,0 +1,159 @@
+:root {
+    --1-color: #000000;
+    --2-color: #8f87f1;
+    --3-color: #c68efd;
+    --4-color: #e9a5f1;
+    --5-color: #fed2e2;
+}
+
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    background: #f9f9f9;
+}
+
+.wrapper {
+    max-width: 900px;
+    margin: 30px auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.header {
+    background-color: var(--5-color);
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 5px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 38px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+fieldset {
+    border: none;
+    
+}
+
+label {
+    display: block;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    text-align: left;
+    color: var(--2-color);
+    width: 100%;
+}
+
+input[type="text"],
+select {
+    width: 85%;
+    padding: 10px;
+    margin-top: 4px;
+    margin-right: 10px;
+    border: 1px solid var(--1-color);
+    border-radius: 20px;
+    background-color: var(--2-color);
+    font-size: 16px;
+}
+
+.search-button {
+    height: 41px;
+    width: 10%;
+    padding: 10px;
+    border: 1px solid var(--1-color);
+    border-radius: 20px;
+    background-color: var(--2-color);
+    cursor: pointer;
+}
+
+input[type="text"]::placeholder {
+    color: var(--5-color);
+    padding-left: 5px;
+}
+
+.search-button:hover {
+    background-color: var(--3-color);
+}
+
+
+/*  */
+
+
+
+
+
+
+/*  */
+
+
+.registration-card {
+    background-color: var(--3-color);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    margin-left: 10px;
+    font-size: 20px;
+    color: var(--1-color);
+    line-height: 1.2;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-buttons button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    background-color: #9370db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: medium;
+    width: 100px;
+}
+
+.card-buttons button:hover {
+    background-color: #6b46c3;
+}
+
+.card-details {
+    margin-top: 10px;
+    background-color: #c59cff;
+    padding: 5px 15px 10px;
+    border-radius: 8px;
+}
+
+.card-details p {
+    color: var(--1-color);
+}
+
+
+.card-details button {
+    display: block;
+    margin: 5px auto;
+    padding: 10px;
+    width: 90%;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--5-color);
+}
+
+.card-details button:hover {
+    background-color: var(--4-color);
+}
+
+.action-button {
+    background-color: #ffb6c1;
+    color: black;
+}

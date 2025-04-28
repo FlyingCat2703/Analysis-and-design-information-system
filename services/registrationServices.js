@@ -51,6 +51,36 @@ class Registration {
         }
     }
 
+    static async getRegistration() {
+        try {
+            const registrations = await RegistrationRepository.getRegistration();
+            // Change date format
+            for (const re of registrations) {
+                const dateObj = new Date(re.date);
+                re.date = dateObj.toLocaleDateString('en-CA');
+            }
+            return registrations;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
+
+    static async getRegistrationByCustomerName(name) {
+        try {
+            const registrations = await RegistrationRepository.getRegistrationByCustomerName(name);
+            // Change date format
+            for (const re of registrations) {
+                const dateObj = new Date(re.date);
+                re.date = dateObj.toLocaleDateString('en-CA');
+            }
+            return registrations;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
+
     static async createOrganizationRegistration(registrationInfo) {
         try {
             const date = registrationInfo.date;

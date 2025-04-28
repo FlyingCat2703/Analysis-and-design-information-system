@@ -1,4 +1,5 @@
 import pool from "../config/db.js";
+import Registration from "../services/registrationServices.js";
 import CandidateRepository from "./candidate.js";
 
 class RegistrationRepository {
@@ -46,6 +47,16 @@ class RegistrationRepository {
             console.error('Lỗi khi thêm Registration:', error);
             throw error;
         }
+    }
+
+    static async getRegistration() {
+        const [rows] = await pool.query('SELECT * FROM PhieuDangKi ORDER BY NgayDangKy DESC;');
+        return rows.map(row => Registration.fromDB(row));
+    } 
+    
+      static async getRegistrationByCustomerName(name) {
+        const [rows] = await pool.query('SELECT * FROM PhieuDangKi WHERE TenKhachHang = ? ORDER BY NgayDangKy DESC;', [name]);
+        return rows.map(row => Registration.fromDB(row));
     }
 }
 
