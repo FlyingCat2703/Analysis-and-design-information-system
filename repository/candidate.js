@@ -28,7 +28,7 @@ class CandidateRepository {
     static async getCandidatesByRegistrationID(registrationID) {
         try {
             const [rows] = await pool.query(
-                "SELECT MaThiSinh, HoTen, SDT, Email, DiaChi, MaPhieuDangKi FROM ThiSinh WHERE MaPhieuDangKi = ?",
+                "SELECT MaThiSinh, HoTen, SDT, Email, DiaChi, MaPhieuDangKi FROM ThiSinh WHERE MaPhieuDangKi = ? AND MaThiSinh NOT IN (SELECT MATHISINH FROM PHIEUDUTHI)",
                 [registrationID]
             );
 

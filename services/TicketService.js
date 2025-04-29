@@ -37,6 +37,19 @@ class Ticket {
         }
     }
 
+    static async addTicket(ticketInfo) {
+        try {
+            const ticket = new Ticket({
+                CandidateID: ticketInfo.candidateID
+            });
+            const insertedID = await TicketRepository.addTicket(ticket);
+            return insertedID;
+        } catch (error) {
+            console.error("ERROR WHEN ADDING TICKET IN SERVICE LAYER!", error);
+            return null;
+        }
+    }   
+
     static createTicket(data) {
         return new Ticket(
             data.TicketID,

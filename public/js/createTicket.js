@@ -1,8 +1,8 @@
+const token = sessionStorage.getItem("token");
+const urlParams = new URLSearchParams(window.location.search);
+const registrationID = urlParams.get("registrationID");
+
 document.addEventListener("DOMContentLoaded", () => {
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const registrationID = urlParams.get("registrationID");
-
     if (!registrationID) {
         alert("Không tìm thấy mã đăng ký!");
         return;
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // loadCandidates(registrationID);
 
-    document.getElementById("createTicketButton").addEventListener("click", () => createTickets(registrationID));
+    // document.getElementById("createTicketButton").addEventListener("click", () => createTickets(registrationID));
 });
 
 async function loadCandidates(registrationID) {
@@ -44,22 +44,53 @@ async function loadCandidates(registrationID) {
     }
 }
 
-async function createTickets(registrationID) {
-    try {
-        const res = await fetch(`/add-ticket?registrationID=${encodeURIComponent(registrationID)}`, {
-            method: "POST",
-        });
+// async function createTickets(registrationID) {
+//     try {
+//         const res = await fetch(`/add-ticket?registrationID=${encodeURIComponent(registrationID)}`, {
+//             method: "POST",
+//             headers: {
+//                 "Authorization": `Bearer ${token}`,
+//                 "Content-Type": "application/json"
+//             },
+            
+//         });
+//         console.log(res);
+//         const data = await res.json();
 
-        const data = await res.json();
+//         if (res.ok) {
+//             alert("Lập Ticket thành công cho các thí sinh!");
+//             loadCandidates(registrationID);
+//         } else {
+//             alert("Lỗi khi lập Ticket: " + (data.message || "Có lỗi xảy ra"));
+//         }
+//     } catch (error) {
+//         console.log(error);
+//         alert("Đã xảy ra lỗi khi lập Ticket.");
+//     }
+// }
 
-        if (res.ok && data.success) {
-            alert("Lập Ticket thành công cho các thí sinh!");
-            loadCandidates(registrationID);
-        } else {
-            alert("Lỗi khi lập Ticket: " + (data.message || "Có lỗi xảy ra"));
+document.querySelectorAll('.button').forEach(button => {
+    button.addEventListener('click', async function (event) {
+        const candidateID = event.target.dataset.candidateId;
+        try {
+            const res = await fetch(`/add-ticket?registrationID=${encodeURIComponent(registrationID)}&candidateId=${candidateID}`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (res.ok) {
+                // const data = await res.json();
+                alert("Lập phiếu dự thi thành công!");
+                window.location.reload();
+            } else {
+                alert("Lập Ticket thất bại cho các thí sinh!");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Đã xảy ra lỗi khi lập Ticket.");
         }
-    } catch (error) {
-        console.error(error);
-        alert("Đã xảy ra lỗi khi lập Ticket.");
-    }
-}
+    });
+});

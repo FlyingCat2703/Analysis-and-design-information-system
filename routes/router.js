@@ -42,10 +42,7 @@ router.get("/ticket/result", ticketController.getTicket);
 
 // candidate
 router.get("/viewCandidates", CandidateController.getCandidatesByRegistrationID);
-router.get('/add-ticket', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(1), ticketController.addTicket);
-
-// regulation
-router.get("/viewRules", registrationController.getViewRules);
+router.post('/add-ticket', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(1), ticketController.addTicket);
 
 
 export default router;

@@ -30,12 +30,16 @@ const TicketController = {
         }
     },
 
-    async addTicket(req, res) {
+    async addTicket(req, res, next) {
         try {
             const ticket = req.query.registrationID;
-            console.log(ticket);
-            const result = await Ticket.createTicket(ticket);
-            res.status(201).json({ message: 'Thêm phiếu dự thi thành công', id: result });
+            const candidateID = req.query.candidateId;
+            const ticketInfo = {
+                ticketID: ticket,
+                candidateID: candidateID
+            };
+            const result = await Ticket.addTicket(ticketInfo);
+            res.status(201).json({ message: 'Thêm phiếu dự thi thành công', success: true, id: result });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }

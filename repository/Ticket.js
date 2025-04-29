@@ -25,25 +25,34 @@ class TicketRepository {
             return null;
         }
     }
-
     static async addTicket(ticket) {
-        const sql = `
-            INSERT INTO PhieuDuThi (MaThiSinh)
-            VALUES (?)
-        `;
-
-        const values = [
-            ticket.CandidateID       
-        ];
-
+        const connection = await pool.getConnection();
         try {
-            const [result] = await pool.execute(sql, values);
-            return result.insertId;
+            await connection.beginTransaction();
+    
+            const [insertResult] = await connection.execute(
+                `INSERT INTO PhieuDuThi (MaThiSinh) VALUES (?)`,
+                [ticket.CandidateID]
+            );
+            const insertedID = insertResult.insertId;
+    
+            const candidateNumber = 'SBD' + insertedID;
+    
+            await connection.execute(
+                `UPDATE PhieuDuThi SET SoBaoDanh = ? WHERE MaPhieuDuThi = ?`,
+                [candidateNumber, insertedID]
+            );
+    
+            await connection.commit();
+            return insertedID;
         } catch (error) {
+            await connection.rollback();
             console.error("ERROR WHEN ADDING TICKET:", error);
             throw error;
+        } finally {
+            connection.release();
         }
-    }
+    }         
 }
 
 export default TicketRepository;
