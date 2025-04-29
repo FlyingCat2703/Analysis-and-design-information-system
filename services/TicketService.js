@@ -40,7 +40,7 @@ class Ticket {
     static async addTicket(ticketInfo) {
         try {
             const ticket = new Ticket({
-                CandidateID: ticketInfo.CandidateID
+                CandidateID: ticketInfo.candidateID
             });
             const insertedID = await TicketRepository.addTicket(ticket);
             return insertedID;
