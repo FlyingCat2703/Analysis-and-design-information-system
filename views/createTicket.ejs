@@ -14,10 +14,10 @@
             <% if (candidates && candidates.length > 0) { %>
                 <% candidates.forEach(candidate => { %>
                     <div class="candidate-item">
-                        <p><strong>Họ tên:</strong> <%= candidate.HoTen %></p>
-                        <p><strong>Điện thoại:</strong> <%= candidate.SDT %></p>
-                        <p><strong>Email:</strong> <%= candidate.Email %></p>
-                        <button class="button" data-candidate-id="<%= candidate.MaThiSinh %>">Lập Ticket</button>
+                        <p><strong>Họ tên:</strong> <%= candidate.name %></p>
+                        <p><strong>Điện thoại:</strong> <%= candidate.phoneNumber %></p>
+                        <p><strong>Email:</strong> <%= candidate.email %></p>
+                        <button class="button" data-candidate-id="<%= candidate.id %>" id="createTicketButton">Lập Ticket</button>
                     </div>
                 <% }) %>
             <% } else { %>

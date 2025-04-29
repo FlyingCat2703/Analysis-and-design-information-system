@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    loadCandidates(registrationID);
+    // loadCandidates(registrationID);
 
     document.getElementById("createTicketButton").addEventListener("click", () => createTickets(registrationID));
 });
@@ -46,7 +46,7 @@ async function loadCandidates(registrationID) {
 
 async function createTickets(registrationID) {
     try {
-        const res = await fetch(`/ticket/create?registrationID=${encodeURIComponent(registrationID)}`, {
+        const res = await fetch(`/add-ticket?registrationID=${encodeURIComponent(registrationID)}`, {
             method: "POST",
         });
 

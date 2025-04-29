@@ -32,8 +32,9 @@ const TicketController = {
 
     async addTicket(req, res) {
         try {
-            const ticket = new Ticket(req.body);
-            const result = await Ticket.addTicket(ticket);
+            const ticket = req.query.registrationID;
+            console.log(ticket);
+            const result = await Ticket.createTicket(ticket);
             res.status(201).json({ message: 'Thêm phiếu dự thi thành công', id: result });
         } catch (error) {
             res.status(500).json({ error: error.message });

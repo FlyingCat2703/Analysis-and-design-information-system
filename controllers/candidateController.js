@@ -16,8 +16,7 @@ const CandidateController = {
         try {
             const registrationID = req.query.registrationID;
             const candidates = await Candidate.getCandidatesByRegistrationID(registrationID);
-    
-            res.render("viewCandidates", { candidates: candidates });
+            res.render("createTicket", { candidates: candidates });
         } catch (error) {
             const err = new Error("Lấy danh sách thí sinh theo Mã Phiếu Đăng Ký thất bại!");
             err.statusCode = 404;
