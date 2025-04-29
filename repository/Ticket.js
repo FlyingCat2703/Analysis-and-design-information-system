@@ -25,6 +25,25 @@ class TicketRepository {
             return null;
         }
     }
+
+    static async addTicket(ticket) {
+        const sql = `
+            INSERT INTO PhieuDuThi (MaThiSinh)
+            VALUES (?)
+        `;
+
+        const values = [
+            ticket.CandidateID       
+        ];
+
+        try {
+            const [result] = await pool.execute(sql, values);
+            return result.insertId;
+        } catch (error) {
+            console.error("ERROR WHEN ADDING TICKET:", error);
+            throw error;
+        }
+    }
 }
 
 export default TicketRepository;

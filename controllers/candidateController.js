@@ -10,6 +10,19 @@ const CandidateController = {
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
+    },
+
+    async getCandidatesByRegistrationID(req, res, next) {
+        try {
+            const registrationID = req.query.registrationID;
+            const candidates = await Candidate.getCandidatesByRegistrationID(registrationID);
+            res.render("createTicket", { candidates: candidates });
+        } catch (error) {
+            const err = new Error("Lấy danh sách thí sinh theo Mã Phiếu Đăng Ký thất bại!");
+            err.statusCode = 404;
+            err.desc = "Something went wrong when fetching candidates by registration ID!";
+            next(err);
+        }
     }
 }
 

@@ -40,5 +40,12 @@ router.post('/api/createInvoice', AuthMiddleware.verifyToken, AuthMiddleware.aut
 router.get("/viewGrade", ticketController.getViewGrade);
 router.get("/ticket/result", ticketController.getTicket);
 
+// candidate
+router.get("/viewCandidates", CandidateController.getCandidatesByRegistrationID);
+router.get('/add-ticket', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(1), ticketController.addTicket);
+
+// regulation
+router.get("/viewRules", registrationController.getViewRules);
+
 
 export default router;

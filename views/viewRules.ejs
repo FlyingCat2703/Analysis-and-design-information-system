@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quy Định Đăng Ký</title>
+    <link rel="stylesheet" href="/styles/viewRules.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title">QUY ĐỊNH ĐĂNG KÝ</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center;">Số</th>
+                    <th>Mô tả quy định</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% regulations.forEach((regulation, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= regulation.des %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

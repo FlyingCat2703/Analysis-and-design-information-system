@@ -24,6 +24,20 @@ class CandidateRepository {
             throw error;
         }
     }
+
+    static async getCandidatesByRegistrationID(registrationID) {
+        try {
+            const [rows] = await pool.query(
+                "SELECT MaThiSinh, HoTen, SDT, Email, DiaChi, MaPhieuDangKi FROM ThiSinh WHERE MaPhieuDangKi = ?",
+                [registrationID]
+            );
+
+            return rows; 
+        } catch (error) {
+            console.error("ERROR WHEN FETCHING CANDIDATES BY REGISTRATION ID", error);
+            return [];
+        }
+    }
 }
 
 export default CandidateRepository

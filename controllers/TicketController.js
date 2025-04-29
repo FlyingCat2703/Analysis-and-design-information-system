@@ -28,6 +28,17 @@ const TicketController = {
             err.desc = "Something went wrong when fetching exam result!";
             next(err);
         }
+    },
+
+    async addTicket(req, res) {
+        try {
+            const ticket = req.query.registrationID;
+            console.log(ticket);
+            const result = await Ticket.createTicket(ticket);
+            res.status(201).json({ message: 'Thêm phiếu dự thi thành công', id: result });
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
     }
 };
 

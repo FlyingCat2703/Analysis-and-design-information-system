@@ -1,6 +1,7 @@
 import Registration from "../services/registrationServices.js";
 import RegistrationRepository from "../repository/registration.js";
 import ExamScheduleRepository from "../repository/examSchedule.js";
+import Regulation from "../services/regulationServices.js";
 
 const RegistrationController = {
     async getOrganizationRegistration(req, res, next) {
@@ -52,6 +53,18 @@ const RegistrationController = {
             res.status(201).json({ message: 'Đăng ký thành công', id: result });
         } catch (error) {
             res.status(500).json({ error: error.message });
+        }
+    },
+
+    async getViewRules(req, res, next) {
+        try {
+            const regulations = await Regulation.getRegulation();
+            res.render("viewRules", { regulations: regulations });
+        } catch (error) {
+            const err = new Error("Render view regulation site failed!");
+            err.statusCode = 404;
+            err.desc = "Something went wrong when rendering view regulation!";
+            next(err);
         }
     }
 }
