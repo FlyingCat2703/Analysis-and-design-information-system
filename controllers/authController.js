@@ -36,7 +36,51 @@ const AuthController = {
             err.desc = "Something went wrong when rendering homepage!";
             next(err);
         }
-    }
+    },
+
+    getMainPage_0(req, res, next) {
+        try {
+            res.render("mainpage_0");
+        } catch (error) {
+            const err = new Error("Render mainpage failed!");
+            err.statusCode = 404;
+            err.desc = "Something went wrong when rendering mainpage!";
+            next(err);
+        }
+    },
+    
+    getMainPage_1(req, res, next) {
+        try {
+            res.render("mainpage_1");
+        } catch (error) {
+            const err = new Error("Render mainpage failed!");
+            err.statusCode = 404;
+            err.desc = "Something went wrong when rendering mainpage!";
+            next(err);
+        }
+    },
+
+    getMainPage_2(req, res, next) {
+        try {
+            res.render("mainpage_2");
+        } catch (error) {
+            const err = new Error("Render mainpage failed!");
+            err.statusCode = 404;
+            err.desc = "Something went wrong when rendering mainpage!";
+            next(err);
+        }
+    },
+
+    getMainPage_3(req, res, next) {
+        try {
+            res.render("mainpage_3");
+        } catch (error) {
+            const err = new Error("Render mainpage failed!");
+            err.statusCode = 404;
+            err.desc = "Something went wrong when rendering mainpage!";
+            next(err);
+        }
+    },
 }
 
 export default AuthController;

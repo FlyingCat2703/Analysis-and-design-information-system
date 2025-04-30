@@ -78,7 +78,7 @@ function login() {
          if (res.ok) {
             sessionStorage.setItem("token", data.token);
             showErrorMessage("Login successfully!!");
-            window.location.href = "/register/customer";
+            redirectBasedOnRole();
          } else {
             showErrorMessage(data.message || "Login failed!!");
          }
@@ -87,4 +87,33 @@ function login() {
          alert("Something went wrong!!");
       }
   });
+}
+
+function parseJwt(token) {
+   const base64Payload = token.split('.')[1];
+   const payload = atob(base64Payload);
+   return JSON.parse(payload);
+ }
+
+function redirectBasedOnRole() {
+   const token = sessionStorage.getItem("token");
+   if (token) {
+      const decoded = parseJwt(token);
+      const role = decoded.type;
+
+      if (role === 0) {
+         window.location.href = "/employee-0";
+      }
+      else if (role === 1) {
+         window.location.href = "/employee-1";
+      }
+      else if (role === 2) {
+         window.location.href = "/employee-2";
+      }
+      else if (role === 3) {
+         window.location.href = "/employee-3";
+      } else {
+         alert("Can not determine role!");
+      }
+   }
 }

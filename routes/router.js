@@ -14,6 +14,12 @@ const router = express.Router();
 // homepage
 router.get("/", authController.getHomepage);
 
+// mainpage
+router.get("/employee-0", authController.getMainPage_0);
+router.get("/employee-1", authController.getMainPage_1);
+router.get("/employee-2", authController.getMainPage_2);
+router.get("/employee-3", authController.getMainPage_3);
+
 // handle authentication 
 router.get("/login", authController.getLogin);
 router.post("/login", authController.login);
