@@ -27,6 +27,6 @@ function redirectToCreateRegistration() {
     window.location.href = "/register/customer";
 }
 
-function redirectToViewCertificate() {
-
+function redirectToViewRegistration() {
+    window.location.href = "/viewRegistration";
 }

@@ -33,7 +33,9 @@ router.get("/register/organization", registrationController.getOrganizationRegis
 router.post("/register/organization", AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(3), registrationController.organizationRegister);
 router.get('/register/customer', registrationController.HienThi_LapPhieuDangKy_TuDo);
 router.post('/add-registration', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(3), registrationController.addRegistration);
-router.post('/add-candidate', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(3), CandidateController.addCandidate)
+router.post('/add-candidate', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(3), CandidateController.addCandidate);
+router.get('/viewRegistration', registrationController.HienThi);
+router.get('/viewRegistration/search', registrationController.TimKiem);
 
 // payment slip
 router.get('/viewPaymentSlip', PaymentSlipController.getViewPaymentSlipList);

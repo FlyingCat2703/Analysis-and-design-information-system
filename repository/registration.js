@@ -1,5 +1,6 @@
 import pool from "../config/db.js";
 import CandidateRepository from "./candidate.js";
+import Registration from "../services/registrationServices.js";
 
 class RegistrationRepository {
     static async createOrganizationRegistration(registrationInfo, candidateInfo) {
@@ -46,6 +47,16 @@ class RegistrationRepository {
             console.error('Lỗi khi thêm Registration:', error);
             throw error;
         }
+    }
+
+    static async getRegistration() {
+        const [rows] = await pool.query('SELECT * FROM PhieuDangKi ORDER BY NgayDangKy DESC;');
+        return rows.map(row => Registration.fromDB(row));
+    } 
+    
+    static async getRegistrationByCustomerName(name) {
+        const [rows] = await pool.query('SELECT * FROM PhieuDangKi WHERE LOWER(TenKhachHang) like LOWER(?) ORDER BY NgayDangKy DESC;', [`%${name.toLowerCase()}%`]);
+        return rows.map(row => Registration.fromDB(row));
     }
 }
 
