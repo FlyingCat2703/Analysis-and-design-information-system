@@ -12,10 +12,12 @@
         <div class="header">
             <h1>Thông tin đăng ký</h1>            
             <fieldset>
-                <label for="search">TÌM KIẾM TÊN KHÁCH HÀNG:
-                    <input type="text" id="search" placeholder="Tìm kiếm">
-                    <button class="search-button"><i class="fa fa-search fa-lg"></i></button>
-                </label>
+                <form method="GET" action="/xem-tt-dang-ky/search">
+                    <label for="search">TÌM KIẾM TÊN KHÁCH HÀNG:
+                        <input type="text" id="search" name="name" placeholder="Tìm kiếm" value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
+                        <button type="submit" class="search-button"><i class="fa fa-search fa-lg"></i></button>
+                    </label>
+                </form>
             </fieldset>
         </div>
 
@@ -43,6 +45,9 @@
                     <button class="action-button">Gia hạn & cập nhật lịch thi</button>
                     <button class="action-button">Hủy đăng ký</button>
                     <button class="action-button">Tạo phiếu thanh toán</button>
+                    <a href="/createReceipt/<%= reg.id %>">
+                        <button class="action-button">Tạo phiếu thanh toán</button>
+                    </a>
                     <button class="action-button">Lập phiếu dự thi</button>
                 </div>
             </div>

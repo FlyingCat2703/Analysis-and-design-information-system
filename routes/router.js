@@ -37,5 +37,6 @@ router.get('/createReceipt/:id', ReceiptController.getViewCreteReceiptInfo);
 router.post('/api/createInvoice', AuthMiddleware.verifyToken, AuthMiddleware.authorizeRole(2), ReceiptController.createInvoice);
 
 router.get('/xem-tt-dang-ky', XemTTDangKyController.HienThi);
+router.get('/xem-tt-dang-ky/search', XemTTDangKyController.TimKiem);
 
 export default router;

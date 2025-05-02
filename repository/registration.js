@@ -55,7 +55,7 @@ class RegistrationRepository {
     } 
     
       static async getRegistrationByCustomerName(name) {
-        const [rows] = await pool.query('SELECT * FROM PhieuDangKi WHERE TenKhachHang = ? ORDER BY NgayDangKy DESC;', [name]);
+        const [rows] = await pool.query('SELECT * FROM PhieuDangKi WHERE LOWER(TenKhachHang) like LOWER(?) ORDER BY NgayDangKy DESC;', [`%${name.toLowerCase()}%`]);
         return rows.map(row => Registration.fromDB(row));
     }
 }
