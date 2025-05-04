@@ -8,9 +8,14 @@ if (!token) {
 
 function showErrorMessage(message) {
     const errorDiv = document.getElementById("error-message");
-    errorDiv.textContent = message;
-    errorDiv.style.display = "block";
- }
+    if (message.trim() === "") {
+        errorDiv.style.display = "none";
+        errorDiv.textContent = "";
+    } else {
+        errorDiv.textContent = message;
+        errorDiv.style.display = "block";
+    }
+}
 
 document.getElementById('candidate-info').addEventListener('change', function (event) {
     const file = event.target.files[0];
@@ -129,4 +134,46 @@ document.getElementById("submit-btn").addEventListener("click", async function (
 
 document.getElementById("customer").addEventListener("click", function () {
     window.location.href = "/register/customer";
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('date');
+    const startTimeInput = document.getElementById('start-time');
+    const endTimeInput = document.getElementById('end-time');
+    const submitBtn = document.getElementById('submit-btn');
+
+    const today = new Date();
+    today.setDate(today.getDate() + 14);
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    dateInput.min = `${year}-${month}-${day}`;
+
+    function validateTimes() {
+        const start = startTimeInput.value;
+        const end = endTimeInput.value;
+    
+        const MIN_START_TIME = '08:00';
+        const MAX_END_TIME  = '17:00';
+    
+        if (!start || !end) {
+            showErrorMessage("Vui lòng nhập đủ giờ bắt đầu và kết thúc.");
+            submitBtn.disabled = true;
+        } else if (start < MIN_START_TIME) {
+            showErrorMessage("Giờ bắt đầu phải từ 08:00 trở lên.");
+            submitBtn.disabled = true;
+        } else if (end > MAX_END_TIME ) {
+            showErrorMessage("Giờ kết thúc phải từ 17:00 trở xuống.");
+            submitBtn.disabled = true;
+        } else if (end <= start) {
+            showErrorMessage("Giờ kết thúc phải lớn hơn giờ bắt đầu.");
+            submitBtn.disabled = true;
+        } else {
+            showErrorMessage("");
+            submitBtn.disabled = false;
+        }
+    }
+
+    startTimeInput.addEventListener('input', validateTimes);
+    endTimeInput.addEventListener('input', validateTimes);
 });
